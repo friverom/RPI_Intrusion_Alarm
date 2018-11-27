@@ -113,22 +113,23 @@ public class IntrusionAlarm {
     
     public class IntrusionTask implements Runnable{
         
+        String resp="";
         @Override
         public void run() {
 
-            rpio.setLock(INTRUSIONTASK,TASKLEVEL,ALARM);
+            resp=rpio.setLock(INTRUSIONTASK,TASKLEVEL,ALARM);
 
             while (runFlag) {
                 if (enableAlarm && alarmState == 0) {
                     if (!get_door_status(RDR_DOOR) || !get_door_status(GEN_DOOR)) {
-                        rpio.setRly(INTRUSIONTASK, TASKLEVEL, ALARM);
+                        resp=rpio.setRly(INTRUSIONTASK, TASKLEVEL, ALARM);
                         alarmState = 1;
                     }
                 } else if (alarmState == 1){
                     if (get_door_status(RDR_DOOR) && get_door_status(GEN_DOOR)){
                         reset_timer++;
                         if(reset_timer>=reset_value){
-                            rpio.resetRly(INTRUSIONTASK, TASKLEVEL, ALARM);
+                            resp=rpio.resetRly(INTRUSIONTASK, TASKLEVEL, ALARM);
                             alarmState=0;
                             reset_timer=0;
                         }
