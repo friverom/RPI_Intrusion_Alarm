@@ -27,7 +27,7 @@ public class RPI_Intrusion_Alarm {
     static BufferedReader input = null;
     static PrintWriter output = null;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     //Check if arguments passed to main. If no args, start INtrusionAlarm class
     //with default address "localhost". Otherwise pass the address to the 
     //IntrusionAlarm constructor.
@@ -53,6 +53,7 @@ public class RPI_Intrusion_Alarm {
             }
             
         }
+        serversocket.close();
         
     }
     /**
