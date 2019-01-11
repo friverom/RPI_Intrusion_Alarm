@@ -98,12 +98,12 @@ public class RPI_Intrusion_Alarm {
             case "get status":
                 reply=getStatus();
                 break;
-                
+            //Enable intrusion alarm    
             case "enable alarm":
                 reply=alarm.enableAlarm();
                 break;
                 
-            case "disabled alarm":
+            case "disable alarm":
                 reply=alarm.disableAlarm();
                 break;
                 
@@ -115,6 +115,7 @@ public class RPI_Intrusion_Alarm {
                 runFlag = false;
                 reply=alarm.killThread();
                 break;
+            // Automatic alarm reset after x minutes.
             case "reset timer":
                 reply=alarm.reset_value(data);
                 break;

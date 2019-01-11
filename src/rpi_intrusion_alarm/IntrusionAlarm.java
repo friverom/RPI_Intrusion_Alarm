@@ -50,9 +50,9 @@ public class IntrusionAlarm {
         rpio.resetRly(INTRUSIONTASK, TASKLEVEL, ALARM);
         return "Intrusion task stopped";
     }
-    
+    // Reset alarm after xx secs
     public String reset_value(int value){
-        reset_value=value*60;
+        reset_value=value;
         return "Reset Timer: "+value;
     }
     
@@ -124,6 +124,7 @@ public class IntrusionAlarm {
                     if (!get_door_status(RDR_DOOR) || !get_door_status(GEN_DOOR)) {
                         resp=rpio.setRly(INTRUSIONTASK, TASKLEVEL, ALARM);
                         alarmState = 1;
+                        reset_timer=0;
                     }
                 } else if (alarmState == 1){
                     if (get_door_status(RDR_DOOR) && get_door_status(GEN_DOOR)){
@@ -141,6 +142,7 @@ public class IntrusionAlarm {
                     Logger.getLogger(IntrusionAlarm.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            rpio.releaseLock(INTRUSIONTASK, TASKLEVEL, ALARM);
         }
         
     }
