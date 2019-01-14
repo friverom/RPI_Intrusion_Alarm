@@ -52,8 +52,12 @@ public class IntrusionAlarm {
     }
     // Reset alarm after xx secs
     public String reset_value(int value){
-        reset_value=value;
+        reset_value=(int)value*60;
         return "Reset Timer: "+value;
+    }
+    
+    public String getTimer(){
+        return ""+(int)reset_value/60;
     }
     
     public String resetAlarm(){

@@ -116,8 +116,11 @@ public class RPI_Intrusion_Alarm {
                 reply=alarm.killThread();
                 break;
             // Automatic alarm reset after x minutes.
-            case "reset timer":
+            case "set alarm timer":
                 reply=alarm.reset_value(data);
+                break;
+            case "get alarm timer":
+                reply=alarm.getTimer();
                 break;
                 
             default:
