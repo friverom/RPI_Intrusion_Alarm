@@ -80,7 +80,7 @@ public class RPI_Intrusion_Alarm {
      * @param request
      * @return 
      */
-    private static String processRequest(String request){
+    private static String processRequest(String request) throws IOException{
         String reply="";
         String command="";
         int data=0;
@@ -122,7 +122,7 @@ public class RPI_Intrusion_Alarm {
             case "get alarm timer":
                 reply=alarm.getTimer();
                 break;
-                
+            
             default:
                 reply="invalid command";
         }
@@ -133,18 +133,18 @@ public class RPI_Intrusion_Alarm {
         return alarm.getStatus();
     }
     
-    private static String enableAlarm(){
+    private static String enableAlarm() throws IOException{
         return alarm.enableAlarm();
     }
     
-    private static String disableAlarm(){
+    private static String disableAlarm() throws IOException{
         return alarm.disableAlarm();
     }
     
     private static String resetAlarm(){
         return alarm.resetAlarm();
     }
-    private static String killThread(){
+    private static String killThread() throws IOException{
         alarm.killThread();
         runFlag=false;
         return "killed";
